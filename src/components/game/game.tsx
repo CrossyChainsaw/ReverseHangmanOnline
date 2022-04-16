@@ -14,16 +14,15 @@ function Game() {
 
     function clickButton() {
         setWordDeluxe(word);
+        (document.getElementById('test') as HTMLBodyElement).innerHTML = "hel";
     }
 
     return (
         <div className='center'>
-            <input
-                type="text"
-                onChange={getInputValue}
-            />
+            <input id='userProfilePic' type="text" onChange={getInputValue} />
             <Button onClick={clickButton}>Set Word</Button>
             <h1>{wordView}</h1>
+            <h2 id='test'></h2>
         </div>
     );
 }
