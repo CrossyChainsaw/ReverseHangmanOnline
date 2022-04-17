@@ -4,20 +4,20 @@ import { text } from 'stream/consumers';
 import './menu.css';
 import { Button } from "react-bootstrap";
 
-function enableSingleplayer(gamemode: any) {
-    // look into useCallback w3schools react tutorial
-}
-
-function enableMultiplayer() {
-
-}
-
 function Menu(props: any) {
+
+    function EnableSingleplayer() {
+        props.setGamemode(props.Gamemodes.singleplayer);
+    }
+
+    function EnableMultiplayer() {
+        props.setGamemode(props.Gamemodes.multiplayer);
+    }
 
     return (
         <div>
-            <button type='button' onClick={() => enableSingleplayer(props.gamemode)}>Singleplayer</button>
-            <button type='button' onClick={() => enableMultiplayer()}>Multiplayer</button>
+            <button type='button' onClick={() => EnableSingleplayer()}>Singleplayer</button>
+            <button type='button' onClick={() => EnableMultiplayer()}>Multiplayer</button>
         </div>
     );
 }

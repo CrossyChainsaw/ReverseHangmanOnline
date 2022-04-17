@@ -5,9 +5,23 @@ import './singleplayer.css';
 import { Button } from "react-bootstrap";
 
 function Singleplayer(props: any) {
-    console.log(props.name);
+    const [word, setWord] = useState("");
+    const [enabled, setEnabled] = useState(false);
+
+    function OnChange(e: React.ChangeEvent<HTMLInputElement>) {
+        setWord(e.currentTarget.value);
+    }
+    function OnCLick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        setEnabled(true);
+        console.log(word);
+    }
+
     return (
-        <h1>this is singleplayer</h1>
+        <div>
+            <h1>this is singleplayer</h1>
+            <input id='myTb' type='password' disabled={enabled} onChange={(e) => OnChange(e)} />
+            <button id='myBtn' onClick={(e) => OnCLick(e)}>Confirm</button>
+        </div>
     )
 }
 

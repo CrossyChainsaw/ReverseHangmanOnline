@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 
 function Multiplayer() {
     return (
-        <h1>this is singleplayer</h1>
+        <h1>this is multiplayer</h1>
     )
 }
 

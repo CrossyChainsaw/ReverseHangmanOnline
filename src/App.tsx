@@ -14,15 +14,10 @@ enum Gamemodes {
   multiplayer
 }
 
-interface test {
-  b1: string;
-}
-
 function App() {
   const [gamemode, setGamemode] = useState(Gamemodes.none)
 
   if (gamemode == Gamemodes.singleplayer) {
-    console.log("Fluffy beer");
     return (
       <div>
         <Singleplayer />
@@ -39,7 +34,7 @@ function App() {
   else {
     return (
       <div>
-        <Menu gamemode={gamemode} />
+        <Menu gamemode={gamemode} Gamemodes={Gamemodes} setGamemode={setGamemode} />
       </div>
     )
   }
