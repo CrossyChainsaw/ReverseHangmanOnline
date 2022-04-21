@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Word } from '../../interfaces/interfaces';
 import './singleplayer.css';
 
-function Singleplayer(props: any) {
+export function Singleplayer(props: any) {
     const [word, setWord] = useState<string>("");
     const [apiResult, setApiResult] = useState<Word>();
     const [disabledTextBox, setDisabledTextBox] = useState<boolean>(false);

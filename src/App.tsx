@@ -3,7 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 import { isPropertySignature } from 'typescript';
 import Game from './components/game/game'
-import Test from './test/test'
 import Menu from './components/menu/menu';
 import Singleplayer from './components/singleplayer/singleplayer';
 import Multiplayer from './components/multiplayer/multiplayer';
