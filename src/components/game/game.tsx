@@ -2,7 +2,6 @@ import { stat } from 'fs';
 import React, { useState } from 'react';
 import { text } from 'stream/consumers';
 import './game.css';
-import { Button } from "react-bootstrap";
 
 function Game() {
     const [word, setWord] = useState("");
@@ -20,7 +19,7 @@ function Game() {
     return (
         <div className='center'>
             <input id='userProfilePic' type="text" onChange={getInputValue} />
-            <Button onClick={clickButton}>Set Word</Button>
+            <button onClick={clickButton}>Set Word</button>
             <h1>{wordView}</h1>
             <h2 id='test'></h2>
         </div>
