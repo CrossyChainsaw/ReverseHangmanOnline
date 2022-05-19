@@ -7,11 +7,13 @@ export function Singleplayer(props: any) {
     const [word, setWord] = useState<string>("");
     const [apiResult, setApiResult] = useState<Word>();
     const [apiResult2, setApiResult2] = useState();
+    const [apiResult3, setApiResult3] = useState();
     const [disabledTextBox, setDisabledTextBox] = useState<boolean>(false);
     const [disabledButton, setDisabledButton] = useState<boolean>(false);
     const [gameStarted, setGameStarted] = useState<boolean>(false);
     const [buttonClicks, setButtonClicks] = useState<number>(0);
     const [lives, setLives] = useState<number>(0);
+    const [goal, setGoal] = useState<number>(0);
     const [visibilityClass, setVisibilityClass] = useState<string>('hidden');
     const notInitialRender1 = useRef(false)
     const notInitialRender2 = useRef(false)
@@ -56,6 +58,7 @@ export function Singleplayer(props: any) {
         if (notInitialRender3.current) {
             //send word to backend
             GetLives();
+            GetGoal();
             setVisibilityClass('not-hidden')
 
             // show 'hide-this' class
@@ -77,6 +80,17 @@ export function Singleplayer(props: any) {
         };
         api();
     }
+    function GetGoal() {
+        const api = async () => {
+            console.log("word: " + word);
+            const apiUrl = "https://localhost:7071/Goal?word=" + word;
+            const data = await fetch(apiUrl);
+            const jsonData = await data.json();
+            setApiResult3(jsonData);
+            setGoal(jsonData)
+        };
+        api();
+    }
 
     function OnChange(e: React.ChangeEvent<HTMLInputElement>) {
         setWord(e.currentTarget.value);
@@ -89,11 +103,12 @@ export function Singleplayer(props: any) {
     return (
         <div>
             <h1>this is singleplayer</h1>
-            <input id='myTb' type='password' disabled={disabledTextBox} onChange={(e) => OnChange(e)} />
-            <button id='myBtn' disabled={disabledButton} onClick={(e) => OnCLick(e)}>Confirm</button>
+            <input className='white-border' id='myTb' type='password' disabled={disabledTextBox} onChange={(e) => OnChange(e)} />
+            <button className='white-border' id='myBtn' disabled={disabledButton} onClick={(e) => OnCLick(e)}>Confirm</button>
 
             <div className={visibilityClass}>
                 <h1>Lives: {lives}</h1>
+                <h1>Goal &lt; {goal}</h1>
             </div>
         </div>
     )

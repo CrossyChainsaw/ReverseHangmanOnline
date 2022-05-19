@@ -13,8 +13,8 @@ function Menu(props: any) {
     return (
         <div>
             <h1 className='center'>REVERSE HANGMAN</h1>
-            <button type='button' onClick={() => EnableSingleplayer()}>Singleplayer</button>
-            <button type='button' onClick={() => EnableMultiplayer()}>Multiplayer</button>
+            <button className='white-border' type='button' onClick={() => EnableSingleplayer()}>Singleplayer</button>
+            <button className='white-border'   type='button' onClick={() => EnableMultiplayer()}>Multiplayer</button>
         </div>
     );
 }
