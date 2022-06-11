@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Word } from '../../interfaces/interfaces';
 import './multiplayer.css';
 import './multiplayer.css';
@@ -9,15 +9,23 @@ function Multiplayer(props: any) {
     const [disabledTextBox, setDisabledTextBox] = useState<boolean>(false);
     const [disabledButton, setDisabledButton] = useState<boolean>(false);
     const [buttonClicks, setButtonClicks] = useState<number>(0);
+    const notInitialRender4 = useRef(false)
 
     useEffect(() => {
-        const api = async () => {
-            const apiUrl = "http://localhost:8080/word/test?word=" + word;
-            const data = await fetch(apiUrl);
-            const jsonData = await data.json();
-            setApiResult(jsonData);
-        };
-        api();
+        if (notInitialRender4.current) {
+            const api = async () => {
+                const apiUrl = "https://localhost:7054/test3?word=" + word;
+                const data = await fetch(apiUrl);
+                const jsonData = await data.json(); // doesnt work
+                setApiResult(jsonData);
+                console.log(jsonData);
+
+            };
+            api();
+        }
+        else {
+            notInitialRender4.current = true;
+        }
     }, [buttonClicks]);
 
     function OnChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -26,17 +34,6 @@ function Multiplayer(props: any) {
 
     function OnCLick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         setButtonClicks(buttonClicks + 1);
-
-        console.log("word: " + word);
-        console.log("apiRes: " + apiResult?.word);
-
-        if (word.valueOf() == apiResult?.word.valueOf()) {
-            setDisabledTextBox(true);
-            setDisabledButton(true);
-        }
-        else {
-            console.log("the word '" + word + "' does not exist");
-        }
     }
 
     return (

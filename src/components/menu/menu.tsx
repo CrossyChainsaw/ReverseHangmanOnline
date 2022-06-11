@@ -1,8 +1,4 @@
-import { stat } from 'fs';
-import React, { useState } from 'react';
-import { text } from 'stream/consumers';
 import './menu.css';
-import { Button } from "react-bootstrap";
 
 function Menu(props: any) {
 
@@ -16,8 +12,9 @@ function Menu(props: any) {
 
     return (
         <div>
-            <button type='button' onClick={() => EnableSingleplayer()}>Singleplayer</button>
-            <button type='button' onClick={() => EnableMultiplayer()}>Multiplayer</button>
+            <h1 className='center'>REVERSE HANGMAN</h1>
+            <button className='white-border' type='button' onClick={() => EnableSingleplayer()}>Singleplayer</button>
+            <button className='white-border'   type='button' onClick={() => EnableMultiplayer()}>Multiplayer</button>
         </div>
     );
 }
