@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import React, { useEffect, useRef, useState } from 'react';
 import { Word } from '../../interfaces/interfaces';
 import './singleplayer.css';
@@ -100,6 +99,10 @@ export function Singleplayer(props: any) {
         setButtonClicks(buttonClicks + 1);
     }
 
+    function Button_A(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        // send a to backend
+    }
+
     return (
         <div>
             <h1>this is singleplayer</h1>
@@ -107,8 +110,9 @@ export function Singleplayer(props: any) {
             <button className='white-border' id='myBtn' disabled={disabledButton} onClick={(e) => OnCLick(e)}>Confirm</button>
 
             <div className={visibilityClass}>
-                <h1>Lives: {lives}</h1>
+                <h1>Lives {lives}</h1>
                 <h1>Goal &lt; {goal}</h1>
+                <button className='square' id='btnA' disabled={false} onClick={(e) => Button_A(e)}>A</button>
             </div>
         </div>
     )

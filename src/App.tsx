@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-import { isPropertySignature } from 'typescript';
-import Game from './components/game/game'
 import Menu from './components/menu/menu';
 import Singleplayer from './components/singleplayer/singleplayer';
 import Multiplayer from './components/multiplayer/multiplayer';
@@ -15,14 +13,14 @@ enum Gamemodes {
 function App() {
   const [gamemode, setGamemode] = useState(Gamemodes.none)
 
-  if (gamemode == Gamemodes.singleplayer) {
+  if (gamemode === Gamemodes.singleplayer) {
     return (
       <div>
         <Singleplayer />
       </div>
     );
   }
-  else if (gamemode == Gamemodes.multiplayer) {
+  else if (gamemode === Gamemodes.multiplayer) {
     return (
       <div>
         <Multiplayer />

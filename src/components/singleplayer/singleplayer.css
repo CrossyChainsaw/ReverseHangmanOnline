@@ -7,5 +7,12 @@ body {
 }
 
 .white-border {
-    border-color: white;
+    border-color: aliceblue;
+}
+
+.square {
+    padding: 0%;
+    width: 2%;
+    height: 2%;
+    border-color: aliceblue;
 }

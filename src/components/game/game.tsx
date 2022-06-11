@@ -1,6 +1,4 @@
-import { stat } from 'fs';
 import React, { useState } from 'react';
-import { text } from 'stream/consumers';
 import './game.css';
 
 function Game() {
