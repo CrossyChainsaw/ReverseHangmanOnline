@@ -77,7 +77,7 @@ export function Singleplayer(props: any) {
         else {
             notInitialRender3.current = true;
         }
-    }, [gameStarted])
+    }, [gameStarted, word])
 
     function OnChange(e: React.ChangeEvent<HTMLInputElement>) {
         setWord(e.currentTarget.value);
