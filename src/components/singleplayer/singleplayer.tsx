@@ -5,8 +5,6 @@ import './singleplayer.css';
 export function Singleplayer(props: any) {
     const [word, setWord] = useState<string>("");
     const [apiResult, setApiResult] = useState<Word>();
-    const [apiResult2, setApiResult2] = useState();
-    const [apiResult3, setApiResult3] = useState();
     const [disabledTextBox, setDisabledTextBox] = useState<boolean>(false);
     const [disabledButton, setDisabledButton] = useState<boolean>(false);
     const [gameStarted, setGameStarted] = useState<boolean>(false);
@@ -56,8 +54,8 @@ export function Singleplayer(props: any) {
     useEffect(() => {
         if (notInitialRender3.current) {
             //send word to backend
-            GetLives();
             GetGoal();
+            GetLives();
             setVisibilityClass('not-hidden')
 
             // show 'hide-this' class
@@ -74,7 +72,6 @@ export function Singleplayer(props: any) {
             const apiUrl = "https://localhost:7071/Lives?word=" + word;
             const data = await fetch(apiUrl);
             const jsonData = await data.json();
-            setApiResult2(jsonData);
             setLives(jsonData)
         };
         api();
@@ -85,7 +82,6 @@ export function Singleplayer(props: any) {
             const apiUrl = "https://localhost:7071/Goal?word=" + word;
             const data = await fetch(apiUrl);
             const jsonData = await data.json();
-            setApiResult3(jsonData);
             setGoal(jsonData)
         };
         api();
