@@ -52,6 +52,20 @@ export function Singleplayer(props: any) {
 
     // start game
     useEffect(() => {
+        const GetLives = async () => {
+            console.log("word: " + word);
+            const apiUrl = "https://localhost:7071/Lives?word=" + word;
+            const data = await fetch(apiUrl);
+            const jsonData = await data.json();
+            setLives(jsonData)
+        };
+        const GetGoal = async () => {
+            console.log("word: " + word);
+            const apiUrl = "https://localhost:7071/Goal?word=" + word;
+            const data = await fetch(apiUrl);
+            const jsonData = await data.json();
+            setGoal(jsonData)
+        };
         if (notInitialRender3.current) {
             //send word to backend
             GetGoal();
@@ -63,29 +77,7 @@ export function Singleplayer(props: any) {
         else {
             notInitialRender3.current = true;
         }
-    }, [gameStarted, GetGoal, GetLives])
-
-    //
-    function GetLives() {
-        const api = async () => {
-            console.log("word: " + word);
-            const apiUrl = "https://localhost:7071/Lives?word=" + word;
-            const data = await fetch(apiUrl);
-            const jsonData = await data.json();
-            setLives(jsonData)
-        };
-        api();
-    }
-    function GetGoal() {
-        const api = async () => {
-            console.log("word: " + word);
-            const apiUrl = "https://localhost:7071/Goal?word=" + word;
-            const data = await fetch(apiUrl);
-            const jsonData = await data.json();
-            setGoal(jsonData)
-        };
-        api();
-    }
+    }, [gameStarted])
 
     function OnChange(e: React.ChangeEvent<HTMLInputElement>) {
         setWord(e.currentTarget.value);

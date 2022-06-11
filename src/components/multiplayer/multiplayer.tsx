@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Word } from '../../interfaces/interfaces';
 import './multiplayer.css';
 import './multiplayer.css';
 
