@@ -30,7 +30,7 @@ export function Singleplayer(props: any) {
         else {
             notInitialRender1.current = true;
         }
-    }, [buttonClicks]);
+    }, [buttonClicks, word]);
 
     // if word exists start game
     useEffect(() => {
@@ -48,7 +48,7 @@ export function Singleplayer(props: any) {
         else {
             notInitialRender2.current = true;
         }
-    }, [apiResult])
+    }, [apiResult, word])
 
     // start game
     useEffect(() => {
@@ -63,7 +63,7 @@ export function Singleplayer(props: any) {
         else {
             notInitialRender3.current = true;
         }
-    }, [gameStarted])
+    }, [gameStarted, GetGoal, GetLives])
 
     //
     function GetLives() {

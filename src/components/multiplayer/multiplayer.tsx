@@ -5,9 +5,8 @@ import './multiplayer.css';
 
 function Multiplayer(props: any) {
     const [word, setWord] = useState<string>("");
-    const [apiResult, setApiResult] = useState<Word>();
-    const [disabledTextBox, setDisabledTextBox] = useState<boolean>(false);
-    const [disabledButton, setDisabledButton] = useState<boolean>(false);
+    const [disabledTextBox] = useState<boolean>(false);
+    const [disabledButton] = useState<boolean>(false);
     const [buttonClicks, setButtonClicks] = useState<number>(0);
     const notInitialRender4 = useRef(false)
 
@@ -17,7 +16,6 @@ function Multiplayer(props: any) {
                 const apiUrl = "https://localhost:7054/test3?word=" + word;
                 const data = await fetch(apiUrl);
                 const jsonData = await data.json(); // doesnt work
-                setApiResult(jsonData);
                 console.log(jsonData);
 
             };
@@ -26,7 +24,7 @@ function Multiplayer(props: any) {
         else {
             notInitialRender4.current = true;
         }
-    }, [buttonClicks]);
+    }, [buttonClicks, word]);
 
     function OnChange(e: React.ChangeEvent<HTMLInputElement>) {
         setWord(e.currentTarget.value);
