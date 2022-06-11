@@ -14,5 +14,10 @@ code {
 
 button,
 input:hover:enabled {
-  cursor: pointer;
+  cursor: crosshair;
+}
+
+button,
+input:hover:disabled {
+  cursor: crosshair;
 }
