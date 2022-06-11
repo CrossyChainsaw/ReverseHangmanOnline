@@ -15,6 +15,7 @@ export function Singleplayer(props: any) {
     const notInitialRender1 = useRef(false)
     const notInitialRender2 = useRef(false)
     const notInitialRender3 = useRef(false)
+    const [permission, setPermission] = useState<boolean>(false);
 
     // send word to backend and get result
     useEffect(() => {
@@ -34,50 +35,58 @@ export function Singleplayer(props: any) {
 
     // if word exists start game
     useEffect(() => {
-        if (notInitialRender2.current) {
-            console.log(apiResult);
-            if (apiResult?.exists) {
-                setDisabledTextBox(true);
-                setDisabledButton(true);
-                setGameStarted(true);
+        if (word.length > 3 && permission) {
+            if (notInitialRender2.current) {
+                console.log(apiResult);
+                if (apiResult?.exists) {
+                    setDisabledTextBox(true);
+                    setDisabledButton(true);
+                    setGameStarted(true);
+                    console.log('disabled button');
+                    console.log('disabled textbox');
+                    console.log('game started');
+                }
+                else {
+                    console.log("the word '" + word + "' does not exist");
+                    setPermission(false);
+                }
             }
             else {
-                console.log("the word '" + word + "' does not exist");
+                notInitialRender2.current = true;
             }
         }
-        else {
-            notInitialRender2.current = true;
-        }
-    }, [apiResult, word])
+    }, [apiResult, word, permission])
 
     // start game
     useEffect(() => {
-        const GetLives = async () => {
-            console.log("word: " + word);
-            const apiUrl = "https://localhost:7071/Lives?word=" + word;
-            const data = await fetch(apiUrl);
-            const jsonData = await data.json();
-            setLives(jsonData)
-        };
-        const GetGoal = async () => {
-            console.log("word: " + word);
-            const apiUrl = "https://localhost:7071/Goal?word=" + word;
-            const data = await fetch(apiUrl);
-            const jsonData = await data.json();
-            setGoal(jsonData)
-        };
-        if (notInitialRender3.current) {
-            //send word to backend
-            GetGoal();
-            GetLives();
-            setVisibilityClass('not-hidden')
+        if (word.length > 3 && permission) {
+            const GetLives = async () => {
+                console.log("word: " + word);
+                const apiUrl = "https://localhost:7071/Lives?word=" + word;
+                const data = await fetch(apiUrl);
+                const jsonData = await data.json();
+                setLives(jsonData)
+            };
+            const GetGoal = async () => {
+                console.log("word: " + word);
+                const apiUrl = "https://localhost:7071/Goal?word=" + word;
+                const data = await fetch(apiUrl);
+                const jsonData = await data.json();
+                setGoal(jsonData)
+            };
+            if (notInitialRender3.current) {
+                //send word to backend
+                GetGoal();
+                GetLives();
+                setVisibilityClass('not-hidden')
 
-            // show 'hide-this' class
+                // show 'hide-this' class
+            }
+            else {
+                notInitialRender3.current = true;
+            }
         }
-        else {
-            notInitialRender3.current = true;
-        }
-    }, [gameStarted, word])
+    }, [gameStarted, word, permission])
 
     function OnChange(e: React.ChangeEvent<HTMLInputElement>) {
         setWord(e.currentTarget.value);
@@ -85,6 +94,7 @@ export function Singleplayer(props: any) {
 
     function OnCLick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         setButtonClicks(buttonClicks + 1);
+        setPermission(true);
     }
 
     function Button_A(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
