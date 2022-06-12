@@ -16,6 +16,7 @@ export function Singleplayer(props: any) {
     const notInitialRender2 = useRef(false)
     const notInitialRender3 = useRef(false)
     const [permission, setPermission] = useState<boolean>(false);
+    const [guessline, setGuessline] = useState<string>();
 
     // send word to backend and get result
     useEffect(() => {
@@ -74,10 +75,18 @@ export function Singleplayer(props: any) {
                 const jsonData = await data.json();
                 setGoal(jsonData)
             };
+            const GetGuessLine = async () => {
+                console.log("word: " + word);
+                const apiUrl = "https://localhost:7071/test";
+                const data = await fetch(apiUrl);
+                const jsonData = await data.json(); // Error
+                setGuessline(jsonData)
+            };
             if (notInitialRender3.current) {
                 //send word to backend
                 GetGoal();
                 GetLives();
+                GetGuessLine();
                 setVisibilityClass('not-hidden')
 
                 // show 'hide-this' class
@@ -110,6 +119,7 @@ export function Singleplayer(props: any) {
             <div className={visibilityClass}>
                 <h1>Lives {lives}</h1>
                 <h1>Goal &lt; {goal}</h1>
+                <h1>Guessline: {guessline}</h1>
                 <button className='square' id='btnA' disabled={false} onClick={(e) => Button_A(e)}>A</button>
             </div>
         </div>
