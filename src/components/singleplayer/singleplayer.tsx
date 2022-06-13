@@ -77,7 +77,7 @@ export function Singleplayer(props: any) {
             };
             const GetGuessLine = async () => {
                 console.log("word: " + word);
-                const apiUrl = "https://localhost:7071/test";
+                const apiUrl = "https://localhost:7071/GuessLine?word=" + word;
                 const data = await fetch(apiUrl);
                 const jsonData = await data.json(); // Error
                 setGuessline(jsonData)
@@ -97,6 +97,7 @@ export function Singleplayer(props: any) {
         }
     }, [gameStarted, word, permission])
 
+    // this happens everytime text input gets updated
     function OnChange(e: React.ChangeEvent<HTMLInputElement>) {
         setWord(e.currentTarget.value);
     }

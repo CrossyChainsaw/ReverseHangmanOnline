@@ -1,4 +1,6 @@
+import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './menu.css';
+import { Col, Container, Row } from 'react-bootstrap';
 
 function Menu(props: any) {
 
@@ -11,11 +13,24 @@ function Menu(props: any) {
     }
 
     return (
-        <div>
-            <h1 className='center'>REVERSE HANGMAN</h1>
-            <button className='white-border' type='button' onClick={() => EnableSingleplayer()}>Singleplayer</button>
-            <button className='white-border'   type='button' onClick={() => EnableMultiplayer()}>Multiplayer</button>
-        </div>
+        <Container>
+            <br></br>
+            <br></br>
+            <br></br>
+            <h1 className={'center large-text'}>REVERSE HANGMAN</h1>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row>
+                <Col sm={true}>
+                    <button className={'white-border'} type='button' onClick={() => EnableSingleplayer()}>Singleplayer</button>
+                </Col>
+                <Col sm={true}>
+                    <button className={'white-border'} type='button' onClick={() => EnableMultiplayer()}>Multiplayer</button>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 
