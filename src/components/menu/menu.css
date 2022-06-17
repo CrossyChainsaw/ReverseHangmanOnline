@@ -5,3 +5,38 @@
 .white-border {
     border-color: white;
 }
+
+.large-text {
+    font-size: 400%;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+button {
+    background-color: black;
+    color: white;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 200%;
+    width: 90%;
+    height: 500%;
+}
+
+input {
+    background-color: black;
+    color: white;
+    border: 5%;
+}
+
+button,
+input:hover:enabled {
+    cursor: crosshair;
+}
+
+button,
+input:hover:disabled {
+    cursor: crosshair;
+}

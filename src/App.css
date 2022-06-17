@@ -9,13 +9,13 @@ button {
     color: white;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     font-size: larger;
-    border: 10%;
-    width: 10%;
-    height: 10%;
 }
 
 input {
     background-color: black;
     color: white;
     border: 5%;
+    width: 30%;
+    margin-left: 10%;
+    margin-right: auto;
 }

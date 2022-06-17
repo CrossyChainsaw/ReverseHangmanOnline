@@ -11,8 +11,15 @@ body {
 }
 
 .square {
-    padding: 0%;
-    width: 2%;
-    height: 2%;
+    width: 4%;
+    height: 4%;
     border-color: aliceblue;
+}
+
+.center-custom {
+    text-align: center;
+}
+
+.button-width-30 {
+    width: 30%;
 }
