@@ -4,10 +4,8 @@ import './multiplayer.css';
 import './multiplayer.css';
 
 function Multiplayer(props: any) {
-    const [word, setWord] = useState<string>("");
-    const [disabledTextBox] = useState<boolean>(false);
-    const [disabledButton] = useState<boolean>(false);
-    const [buttonClicks, setButtonClicks] = useState<number>(0);
+    const [word] = useState<string>("");
+    const [buttonClicks] = useState<number>(0);
     const notInitialRender4 = useRef(false)
 
     useEffect(() => {
@@ -25,14 +23,6 @@ function Multiplayer(props: any) {
             notInitialRender4.current = true;
         }
     }, [buttonClicks, word]);
-
-    function OnChange(e: React.ChangeEvent<HTMLInputElement>) {
-        setWord(e.currentTarget.value);
-    }
-
-    function OnCLick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-        setButtonClicks(buttonClicks + 1);
-    }
 
     return (
         <Container>
