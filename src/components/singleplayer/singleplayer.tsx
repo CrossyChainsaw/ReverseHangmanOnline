@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
 import { Word } from '../../interfaces/interfaces';
 import './singleplayer.css';
 
@@ -63,21 +64,21 @@ export function Singleplayer(props: any) {
         if (word.length > 3 && permission) {
             const GetLives = async () => {
                 console.log("word: " + word);
-                const apiUrl = "https://localhost:7071/Lives?word=" + word;
+                const apiUrl = "https://localhost:80/Lives?word=" + word;
                 const data = await fetch(apiUrl);
                 const jsonData = await data.json();
                 setLives(jsonData)
             };
             const GetGoal = async () => {
                 console.log("word: " + word);
-                const apiUrl = "https://localhost:7071/Goal?word=" + word;
+                const apiUrl = "https://localhost:80/Goal?word=" + word;
                 const data = await fetch(apiUrl);
                 const jsonData = await data.json();
                 setGoal(jsonData)
             };
             const GetGuessLine = async () => {
                 console.log("word: " + word);
-                const apiUrl = "https://localhost:7071/GuessLine?word=" + word;
+                const apiUrl = "https://localhost:80/GuessLine?word=" + word;
                 const data = await fetch(apiUrl);
                 const jsonData = await data.json(); // Error
                 setGuessline(jsonData)
@@ -112,17 +113,57 @@ export function Singleplayer(props: any) {
     }
 
     return (
-        <div>
-            <h1>this is singleplayer</h1>
-            <input className='white-border' id='myTb' type='password' disabled={disabledTextBox} onChange={(e) => OnChange(e)} />
-            <button className='white-border' id='myBtn' disabled={disabledButton} onClick={(e) => OnCLick(e)}>Confirm</button>
+        <div className='center'>
+            <br></br>
+            <h1 className="center">Wordmaster fills in a word</h1>
+            <br></br>
+            <input className={'white-border center-custom'} id='myTb' type='password' disabled={disabledTextBox} onChange={(e) => OnChange(e)} />
+            <br></br>
+            <br></br>
+            <button className={'white-border center button-width-30'} id='myBtn' disabled={disabledButton} onClick={(e) => OnCLick(e)}>Confirm</button>
 
-            <div className={visibilityClass}>
-                <h1>Lives {lives}</h1>
-                <h1>Goal &lt; {goal}</h1>
-                <h1>Guessline: {guessline}</h1>
-                <button className='square' id='btnA' disabled={false} onClick={(e) => Button_A(e)}>A</button>
-            </div>
+
+            <Container className={visibilityClass}>
+                <Row className='center'>
+                    <h1>Lives {lives}</h1>
+                    <h1>Goal &lt; {goal}</h1>
+                    <h1>Guessline {guessline}</h1>
+                    <button className='square' id='btnA' disabled={false} onClick={(e) => Button_A(e)}>A</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>B</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>C</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>D</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>E</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>F</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>G</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>H</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>I</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>J</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>K</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>L</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>M</button>
+                </Row>
+                <Row className='center'>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>N</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>O</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>P</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>Q</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>R</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>S</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>T</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>U</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>V</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>W</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>X</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>Y</button>
+                    <button className='square' disabled={false} onClick={(e) => Button_A(e)}>Z</button>
+                </Row>
+                <Row>
+                    <Col sm={true} className={"center big-text"}>
+                        <p>This section is still being worked on! You can find everything regarding rules, gameplay and future ideas here</p>
+                        <a href="https://github.com/Epic-Chainsaw-Massacre">Reverse Hangman Online Documentation</a>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     )
 }

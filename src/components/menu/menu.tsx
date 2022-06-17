@@ -12,6 +12,10 @@ function Menu(props: any) {
         props.setGamemode(props.Gamemodes.multiplayer);
     }
 
+    function EnableRules() {
+        props.setGamemode(props.Gamemodes.rules);
+    }
+
     return (
         <Container>
             <br></br>
@@ -25,6 +29,9 @@ function Menu(props: any) {
             <Row>
                 <Col sm={true}>
                     <button className={'white-border'} type='button' onClick={() => EnableSingleplayer()}>Singleplayer</button>
+                </Col>
+                <Col sm={true}>
+                    <button className={'white-border'} type='button' onClick={() => EnableRules()}>Rules</button>
                 </Col>
                 <Col sm={true}>
                     <button className={'white-border'} type='button' onClick={() => EnableMultiplayer()}>Multiplayer</button>

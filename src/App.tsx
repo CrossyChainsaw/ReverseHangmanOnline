@@ -3,11 +3,13 @@ import './App.css';
 import Menu from './components/menu/menu';
 import Singleplayer from './components/singleplayer/singleplayer';
 import Multiplayer from './components/multiplayer/multiplayer';
+import Rules from './components/rules/rules';
 
 enum Gamemodes {
   none,
   singleplayer,
-  multiplayer
+  multiplayer,
+  rules
 }
 
 function App() {
@@ -24,6 +26,13 @@ function App() {
     return (
       <div>
         <Multiplayer />
+      </div>
+    );
+  }
+  else if (gamemode === Gamemodes.rules) {
+    return (
+      <div>
+        <Rules />
       </div>
     );
   }
