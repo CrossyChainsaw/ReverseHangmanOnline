@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
 import { Word } from '../../interfaces/interfaces';
 import './singleplayer.css';
 
@@ -117,14 +116,14 @@ export function Singleplayer(props: any) {
             <br></br>
             <h1 className="center">Wordmaster fills in a word</h1>
             <br></br>
-            <input className={'white-border center-custom'} id='myTb' type='password' disabled={disabledTextBox} onChange={(e) => OnChange(e)} />
+            <input className={'white-border'} id='myTb' type='password' disabled={disabledTextBox} onChange={(e) => OnChange(e)} />
             <br></br>
             <br></br>
             <button className={'white-border center button-width-30'} id='myBtn' disabled={disabledButton} onClick={(e) => OnCLick(e)}>Confirm</button>
 
 
-            <Container className={visibilityClass}>
-                <Row className='center'>
+            <div className={visibilityClass}>
+                <div className='center'>
                     <h1>Lives {lives}</h1>
                     <h1>Goal &lt; {goal}</h1>
                     <h1>Guessline {guessline}</h1>
@@ -141,8 +140,8 @@ export function Singleplayer(props: any) {
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>K</button>
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>L</button>
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>M</button>
-                </Row>
-                <Row className='center'>
+                </div>
+                <div className='center'>
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>N</button>
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>O</button>
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>P</button>
@@ -156,14 +155,14 @@ export function Singleplayer(props: any) {
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>X</button>
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>Y</button>
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>Z</button>
-                </Row>
-                <Row>
-                    <Col sm={true} className={"center big-text"}>
+                </div>
+                <div>
+                    <div className={"center big-text"}>
                         <p>This section is still being worked on! You can find everything regarding rules, gameplay and future ideas here</p>
                         <a href="https://github.com/Epic-Chainsaw-Massacre">Reverse Hangman Online Documentation</a>
-                    </Col>
-                </Row>
-            </Container>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

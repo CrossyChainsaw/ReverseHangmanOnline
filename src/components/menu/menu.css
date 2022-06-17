@@ -10,6 +10,10 @@
     font-size: 400%;
 }
 
+.width-50 {
+    width: 50%;
+}
+
 body {
     background-color: black;
     color: white;
