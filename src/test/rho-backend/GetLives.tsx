@@ -1,7 +1,7 @@
 // import "@testing-library/jest-dom/extend-expect";
 // import { useState } from "react";
 // import { CheckWord, GetLives } from "../../components/api/api";
-// import { Word } from "../../interfaces/interfaces";
+import { Word } from "../../interfaces/interfaces";
 
 // JEST-DOM DOESN'T SUPPORT DISABLING CORS POLICY, THEREFORE THESE TESTS ARE USELESS FOR NOW
 
