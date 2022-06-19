@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Word } from '../../interfaces/interfaces';
+import { CheckWord, GetGoal, GetGuessLine, GetLives } from '../api/api';
 import './singleplayer.css';
 
 export function Singleplayer(props: any) {
@@ -21,13 +22,10 @@ export function Singleplayer(props: any) {
     // send word to backend and get result
     useEffect(() => {
         if (notInitialRender1.current) {
-            const api = async () => {
-                const apiUrl = "http://localhost:8080/word/check?word=" + word;
-                const data = await fetch(apiUrl);
-                const jsonData = await data.json();
-                setApiResult(jsonData);
+            const ApiRequest = async () => {
+                setApiResult(await CheckWord(word));
             };
-            api();
+            ApiRequest();
         }
         else {
             notInitialRender1.current = true;
@@ -61,35 +59,14 @@ export function Singleplayer(props: any) {
     // start game
     useEffect(() => {
         if (word.length > 3 && permission) {
-            const GetLives = async () => {
-                console.log("word: " + word);
-                const apiUrl = "https://localhost:80/Lives?word=" + word;
-                const data = await fetch(apiUrl);
-                const jsonData = await data.json();
-                setLives(jsonData)
-            };
-            const GetGoal = async () => {
-                console.log("word: " + word);
-                const apiUrl = "https://localhost:80/Goal?word=" + word;
-                const data = await fetch(apiUrl);
-                const jsonData = await data.json();
-                setGoal(jsonData)
-            };
-            const GetGuessLine = async () => {
-                console.log("word: " + word);
-                const apiUrl = "https://localhost:80/GuessLine?word=" + word;
-                const data = await fetch(apiUrl);
-                const jsonData = await data.json(); // Error
-                setGuessline(jsonData)
+            const GetFromBackend = async () => {
+                setLives(await GetLives(word));
+                setGoal(await GetGoal(word));
+                setGuessline(await GetGuessLine(word));
             };
             if (notInitialRender3.current) {
-                //send word to backend
-                GetGoal();
-                GetLives();
-                GetGuessLine();
+                GetFromBackend();
                 setVisibilityClass('not-hidden')
-
-                // show 'hide-this' class
             }
             else {
                 notInitialRender3.current = true;

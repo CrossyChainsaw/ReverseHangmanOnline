@@ -1,6 +1,4 @@
-import Singleplayer from "../components/singleplayer/singleplayer";
 import "@testing-library/jest-dom/extend-expect";
-import { assert } from "console";
 
 test("Existing word", () => {
     let word: string = "cool";
