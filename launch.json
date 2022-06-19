@@ -1,0 +1,11 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "env": {
+                "WORD_SERVICE_API_KEY": "key to acces word-service",
+                "REVERSE_HANGMAN_ONLINE_BACKEND_API_KEY": "key to access rhob-service"
+            }
+        }
+    ]
+}

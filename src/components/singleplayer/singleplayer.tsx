@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
 import { Word } from '../../interfaces/interfaces';
+import { CheckWord, GetGoal, GetGuessLine, GetLives } from '../api/api';
 import './singleplayer.css';
 
 export function Singleplayer(props: any) {
@@ -22,13 +22,10 @@ export function Singleplayer(props: any) {
     // send word to backend and get result
     useEffect(() => {
         if (notInitialRender1.current) {
-            const api = async () => {
-                const apiUrl = "http://localhost:8080/word/check?word=" + word;
-                const data = await fetch(apiUrl);
-                const jsonData = await data.json();
-                setApiResult(jsonData);
+            const ApiRequest = async () => {
+                setApiResult(await CheckWord(word));
             };
-            api();
+            ApiRequest();
         }
         else {
             notInitialRender1.current = true;
@@ -62,35 +59,14 @@ export function Singleplayer(props: any) {
     // start game
     useEffect(() => {
         if (word.length > 3 && permission) {
-            const GetLives = async () => {
-                console.log("word: " + word);
-                const apiUrl = "https://localhost:80/Lives?word=" + word;
-                const data = await fetch(apiUrl);
-                const jsonData = await data.json();
-                setLives(jsonData)
-            };
-            const GetGoal = async () => {
-                console.log("word: " + word);
-                const apiUrl = "https://localhost:80/Goal?word=" + word;
-                const data = await fetch(apiUrl);
-                const jsonData = await data.json();
-                setGoal(jsonData)
-            };
-            const GetGuessLine = async () => {
-                console.log("word: " + word);
-                const apiUrl = "https://localhost:80/GuessLine?word=" + word;
-                const data = await fetch(apiUrl);
-                const jsonData = await data.json(); // Error
-                setGuessline(jsonData)
+            const GetFromBackend = async () => {
+                setLives(await GetLives(word));
+                setGoal(await GetGoal(word));
+                setGuessline(await GetGuessLine(word));
             };
             if (notInitialRender3.current) {
-                //send word to backend
-                GetGoal();
-                GetLives();
-                GetGuessLine();
+                GetFromBackend();
                 setVisibilityClass('not-hidden')
-
-                // show 'hide-this' class
             }
             else {
                 notInitialRender3.current = true;
@@ -117,14 +93,14 @@ export function Singleplayer(props: any) {
             <br></br>
             <h1 className="center">Wordmaster fills in a word</h1>
             <br></br>
-            <input className={'white-border center-custom'} id='myTb' type='password' disabled={disabledTextBox} onChange={(e) => OnChange(e)} />
+            <input className={'white-border'} id='myTb' type='password' disabled={disabledTextBox} onChange={(e) => OnChange(e)} />
             <br></br>
             <br></br>
             <button className={'white-border center button-width-30'} id='myBtn' disabled={disabledButton} onClick={(e) => OnCLick(e)}>Confirm</button>
 
 
-            <Container className={visibilityClass}>
-                <Row className='center'>
+            <div className={visibilityClass}>
+                <div className='center'>
                     <h1>Lives {lives}</h1>
                     <h1>Goal &lt; {goal}</h1>
                     <h1>Guessline {guessline}</h1>
@@ -141,8 +117,8 @@ export function Singleplayer(props: any) {
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>K</button>
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>L</button>
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>M</button>
-                </Row>
-                <Row className='center'>
+                </div>
+                <div className='center'>
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>N</button>
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>O</button>
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>P</button>
@@ -156,14 +132,14 @@ export function Singleplayer(props: any) {
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>X</button>
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>Y</button>
                     <button className='square' disabled={false} onClick={(e) => Button_A(e)}>Z</button>
-                </Row>
-                <Row>
-                    <Col sm={true} className={"center big-text"}>
+                </div>
+                <div>
+                    <div className={"center big-text"}>
                         <p>This section is still being worked on! You can find everything regarding rules, gameplay and future ideas here</p>
                         <a href="https://github.com/Epic-Chainsaw-Massacre">Reverse Hangman Online Documentation</a>
-                    </Col>
-                </Row>
-            </Container>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

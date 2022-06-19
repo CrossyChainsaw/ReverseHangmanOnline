@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
 import './multiplayer.css';
 import './multiplayer.css';
 
@@ -25,7 +24,7 @@ function Multiplayer(props: any) {
     }, [buttonClicks, word]);
 
     return (
-        <Container>
+        <div className='center'>
             <br></br>
             <br></br>
             <br></br>
@@ -34,13 +33,13 @@ function Multiplayer(props: any) {
             <br></br>
             <br></br>
             <br></br>
-            <Row>
-                <Col sm={true} className={"center big-text"}>
+            <div>
+                <div className={"center big-text"}>
                     <p>This section is still being worked on!You can find everything regarding rules, gameplay and future ideas here</p>
                     <a href="https://github.com/Epic-Chainsaw-Massacre">Reverse Hangman Online Documentation</a>
-                </Col>
-            </Row>
-        </Container>
+                </div>
+            </div>
+        </div >
     )
 }
 

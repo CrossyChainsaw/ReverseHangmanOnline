@@ -1,6 +1,4 @@
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './menu.css';
-import { Col, Container, Row } from 'react-bootstrap';
 
 function Menu(props: any) {
 
@@ -17,7 +15,7 @@ function Menu(props: any) {
     }
 
     return (
-        <Container>
+        <div>
             <br></br>
             <br></br>
             <br></br>
@@ -26,18 +24,20 @@ function Menu(props: any) {
             <br></br>
             <br></br>
             <br></br>
-            <Row>
-                <Col sm={true}>
-                    <button className={'white-border'} type='button' onClick={() => EnableSingleplayer()}>Singleplayer</button>
-                </Col>
-                <Col sm={true}>
-                    <button className={'white-border'} type='button' onClick={() => EnableRules()}>Rules</button>
-                </Col>
-                <Col sm={true}>
-                    <button className={'white-border'} type='button' onClick={() => EnableMultiplayer()}>Multiplayer</button>
-                </Col>
-            </Row>
-        </Container>
+            <div className='center'>
+                <div>
+                    <button className={'white-border width-50'} type='button' onClick={() => EnableSingleplayer()}>Singleplayer</button>
+                </div>
+                <br></br>
+                <div>
+                    <button className={'white-border width-50'} type='button' onClick={() => EnableRules()}>Rules</button>
+                </div>
+                <br></br>
+                <div>
+                    <button className={'white-border width-50'} type='button' onClick={() => EnableMultiplayer()}>Multiplayer</button>
+                </div>
+            </div>
+        </div>
     );
 }
 
